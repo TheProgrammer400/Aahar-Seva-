@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplier Sign-up and Sign-in</title>
+    <link rel="stylesheet" href="Supplier_login.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="form-title">Sign-In</h1>
+        <form id="sign-in-form">
+            <label>Username: </label>
+            <input type="text" placeholder="Enter Username" required>
+            <label>Password: </label>
+            <input type="password" placeholder="Enter Password" required>
+            <div class="captcha-box" id="captcha"></div>
+                <button onclick="generateCaptcha()">↻</button>
+                <br><br>
+                <input type="text" id="captcha-input" placeholder="Enter CAPTCHA" required>
+                <!-- <button type="submit">Sign-In</button> -->
+                <button type="submit" onclick="redirectToProfile(event)">Sign-In</button>
+                <p>Don't have an Account?<a href="#" onclick="toggleForm()">Sign-Up</a></p>
+            
+        </form>
+        <form id="sign-up-form" style="display: none;">
+            <label>Name of the Organisation: </label>
+            <input type="text" placeholder="Enter the Name of Organisation" required>
+            <label>Email-Id: </label>
+            <input type="email" placeholder="Enter your Email-Id" required>
+            <label>City: </label>
+            <input type="text" placeholder="Enter the City of Location" required>
+            <label>Create Password: </label>
+            <input type="password" placeholder="Password" required>
+            <!-- <div class="captcha-box" id="captcha"></div> -->
+            <!-- <button onclick="generateCaptcha()">↻</button> -->
+            <br><br>
+            <!-- <input type="text" placeholder="Enter CAPTCHA" required> -->
+            <!-- <button type="submit">Sign-Up</button> -->
+            <button type="submit" onclick="redirectToProfile(event)">Sign-In</button>
+            <p>Already have an account?<a href="#" onclick="toggleForm()">Sign-Up</a></p>
+        </form>
+    </div>
+    <script>
+        function toggleForm() {
+            let signInForm = document.getElementById("sign-in-form");
+            let signUpForm = document.getElementById("sign-up-form");
+            let formTitle = document.getElementById("form-title");
+
+            if (signInForm.style.display === "none") {
+                signInForm.style.display = "block";
+                signUpForm.style.display = "none";
+                formTitle.textContent = "Sign In";
+            } else {
+                signInForm.style.display = "none";
+                signUpForm.style.display = "block";
+                formTitle.textContent = "Sign Up";
+            }
+        }
+        let captchaCode = ""
+        function generateCaptcha() {
+            captchaCode = Math.random().toString(36).substring(2, 8).toUpperCase();
+            document.getElementById("captcha").textContent = captchaCode;
+        }
+        window.onload = function () {
+            generateCaptcha("sign-in-captcha");
+            generateCaptcha("sign-up-captcha");
+        };
+
+        function redirectToProfile(event) {
+            event.preventDefault();
+            window.location.href = "supplier-profile.html";
+        }
+
+    </script>
+</body>
+</html>

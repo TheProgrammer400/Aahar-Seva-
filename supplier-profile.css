@@ -1,0 +1,187 @@
+:root {
+    --primary-color: #e74c3c;
+    --secondary-color: #f39c12;
+    --background-color: #f4f4f4;
+    --card-background: #ffffff;
+    --text-color: #333333;
+    --border-color: #e0e0e0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.card {
+  background-color: var(--card-background);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.card h2 {
+  margin-top: 0;
+  color: var(--primary-color);
+}
+
+/* Dashboard Overview */
+.dashboard-overview dl {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  text-align: center;
+}
+
+.dashboard-overview dt {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.dashboard-overview dd {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Forms */
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #c0392b;
+}
+
+/* Donation History */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.badge {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8em;
+}
+
+.completed {
+  background-color: #55efc4;
+  color: #00b894;
+}
+.in-transit {
+  background-color: #a29bfe;
+  color: #6c5ce7;
+}
+.pending {
+  background-color: #ffeaa7;
+  color: #fdcb6e;
+}
+
+/* Ratings */
+.rating-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stars {
+  display: flex;
+}
+
+.star {
+  width: 24px;
+  height: 24px;
+  color: #f1c40f;
+}
+
+.star.filled {
+  fill: #f1c40f;
+}
+
+.star.half-filled {
+  fill: url(#half-filled-star);
+}
+
+.rating-value {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.rating-count {
+  color: #666;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .dashboard-overview dl {
+    grid-template-columns: 1fr;
+  }
+
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
