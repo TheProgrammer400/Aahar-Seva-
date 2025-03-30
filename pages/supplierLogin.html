@@ -1,43 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supplier Sign-up and Sign-in</title>
-    <link rel="stylesheet" href="Supplier_login.css">
+    <link rel="stylesheet" href="../stylesheets/supplierLogin.css">
 </head>
+
 <body>
     <div class="container">
         <h1 id="form-title">Sign-In</h1>
         <form id="sign-in-form">
-            <label>Username: </label>
-            <input type="text" placeholder="Enter Username" required>
+            <label>Email: </label>
+            <input type="email" placeholder="Enter email" id="emailSignin" required>
             <label>Password: </label>
-            <input type="password" placeholder="Enter Password" required>
+            <input type="password" placeholder="Enter Password" id="passwordSignin" required>
             <div class="captcha-box" id="captcha"></div>
-                <button onclick="generateCaptcha()">↻</button>
-                <br><br>
-                <input type="text" id="captcha-input" placeholder="Enter CAPTCHA" required>
-                <!-- <button type="submit">Sign-In</button> -->
-                <button type="submit" onclick="redirectToProfile(event)">Sign-In</button>
-                <p>Don't have an Account?<a href="#" onclick="toggleForm()">Sign-Up</a></p>
-            
+            <button onclick="generateCaptcha()">↻</button>
+            <br><br>
+            <input type="text" id="captcha-input" placeholder="Enter CAPTCHA" required>
+            <!-- <button type="submit">Sign-In</button> -->
+            <button type="submit" id="signin" >Sign-In</button>
+            <p>Don't have an Account?<a href="#" onclick="toggleForm()">Sign-Up</a></p>
+
         </form>
         <form id="sign-up-form" style="display: none;">
             <label>Name of the Organisation: </label>
             <input type="text" placeholder="Enter the Name of Organisation" required>
             <label>Email-Id: </label>
-            <input type="email" placeholder="Enter your Email-Id" required>
+            <input type="email" placeholder="Enter your Email-Id" id="emailSignup" required>
             <label>City: </label>
             <input type="text" placeholder="Enter the City of Location" required>
             <label>Create Password: </label>
-            <input type="password" placeholder="Password" required>
+            <input type="password" placeholder="Password" id="passwordSignup" required>
             <!-- <div class="captcha-box" id="captcha"></div> -->
             <!-- <button onclick="generateCaptcha()">↻</button> -->
             <br><br>
             <!-- <input type="text" placeholder="Enter CAPTCHA" required> -->
             <!-- <button type="submit">Sign-Up</button> -->
-            <button type="submit" onclick="redirectToProfile(event)">Sign-In</button>
+            <button type="submit" id="signup">Sign-In</button>
             <p>Already have an account?<a href="#" onclick="toggleForm()">Sign-Up</a></p>
         </form>
     </div>
@@ -73,5 +75,8 @@
         }
 
     </script>
+    <script type="module" src="../auth.js"></script>
+    </script>
 </body>
+
 </html>

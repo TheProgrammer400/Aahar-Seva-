@@ -3,88 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supplier Profile - Aahar Seva</title>
-    <link rel="stylesheet" href="supplier-profile.css">
+    <title>NGO Profile - Aahar Seva</title>
+    <link rel="stylesheet" href="../stylesheets/NGOprofile.css">
 </head>
 <body>
     <div class="container">
-        <h1>Supplier Dashboard</h1>
+        <h1>NGO Dashboard</h1>
         <div class="dashboard-grid">
             <div class="card dashboard-overview">
                 <h2>Dashboard Overview</h2>
                 <dl>
                     <div>
-                        <dt>Total Donations</dt>
-                        <dd>52</dd>
+                        <dt>Food Requests</dt>
+                        <dd>10</dd>
                     </div>
                     <div>
-                        <dt>Pending Pickups</dt>
+                        <dt>Accepted Donations</dt>
+                        <dd>8</dd>
+                    </div>
+                    <div>
+                        <dt>Pending Deliveries</dt>
                         <dd>3</dd>
-                    </div>
-                    <div>
-                        <dt>Impact (Meals)</dt>
-                        <dd>1,560</dd>
                     </div>
                 </dl>
             </div>
 
-            <div class="card donate-food">
-                <h2>Donate Food</h2>
+            <div class="card request-food">
+                <h2>Request Food</h2>
                 <form>
+                    <div class="form-group">
+                        <label for="quantity">Quantity (in servings)</label>
+                        <input type="number" id="quantity" required>
+                    </div>
                     <div class="form-group">
                         <label for="foodType">Food Type</label>
                         <select id="foodType" required>
                             <option value="">Select food type</option>
                             <option value="veg">Vegetarian</option>
                             <option value="non-veg">Non-Vegetarian</option>
-                            <option value="mixed">Mixed</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="quantity">Quantity (in servings)</label>
-                        <input type="number" id="quantity" required>
+                        <label for="urgency">Urgency</label>
+                        <select id="urgency" required>
+                            <option value="">Select urgency level</option>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label for="expiryTime">Best Before</label>
-                        <input type="datetime-local" id="expiryTime" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="pickupTime">Preferred Pickup Time</label>
-                        <input type="datetime-local" id="pickupTime" required>
-                    </div>
-                    <button type="submit">Offer Donation</button>
+                    <button type="submit">Submit Request</button>
                 </form>
             </div>
 
-            <div class="card donation-history">
-                <h2>Donation History</h2>
+            <div class="card track-requests">
+                <h2>Track Requests</h2>
                 <table>
                     <thead>
                         <tr>
                             <th>Date</th>
                             <th>Quantity</th>
-                            <th>Type</th>
                             <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>2023-06-01</td>
-                            <td>50</td>
-                            <td>Vegetarian</td>
-                            <td><span class="badge completed">Completed</span></td>
+                            <td>2024-02-01</td>
+                            <td>100</td>
+                            <td><span class="badge pending">Pending</span></td>
                         </tr>
                         <tr>
-                            <td>2023-06-03</td>
-                            <td>75</td>
-                            <td>Mixed</td>
+                            <td>2024-02-02</td>
+                            <td>150</td>
+                            <td><span class="badge accepted">Accepted</span></td>
+                        </tr>
+                        <tr>
+                            <td>2024-02-03</td>
+                            <td>200</td>
                             <td><span class="badge in-transit">In Transit</span></td>
                         </tr>
                         <tr>
-                            <td>2023-06-05</td>
-                            <td>30</td>
-                            <td>Non-Vegetarian</td>
-                            <td><span class="badge pending">Pending Pickup</span></td>
+                            <td>2024-02-04</td>
+                            <td>120</td>
+                            <td><span class="badge delivered">Delivered</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -95,25 +96,20 @@
                     <h2>Manage Profile</h2>
                     <form>
                         <div class="form-group">
-                            <label for="name">Business Name</label>
-                            <input type="text" id="name" placeholder="Enter Supplier Name" required>
+                            <label for="name">NGO Name</label>
+                            <input type="text" id="name" placeholder="NGO Name" required>
                         </div>
                         <div class="form-group">
                             <label for="contact">Contact Details</label>
-                            <input type="email" id="contact" placeholder="supplierEmail@gmail.com" required>
+                            <input type="email" id="contact" placeholder="yourEmail@gmail.com" required>
                         </div>
                         <div class="form-group">
                             <label for="address">Address</label>
-                            <input type="text" id="address" placeholder="Enter Supplier Address" required>
+                            <input type="text" id="address" placeholder="Enter Address" required>
                         </div>
                         <div class="form-group">
-                            <label for="businessType">Business Type</label>
-                            <select id="businessType" required>
-                                <option value="restaurant">Restaurant</option>
-                                <option value="hotel">Hotel</option>
-                                <option value="caterer">Caterer</option>
-                                <option value="other">Other</option>
-                            </select>
+                            <label for="mission">Mission Statement</label>
+                            <textarea id="mission" required>Our mission is to help those in need.</textarea>
                         </div>
                         <button type="submit">Update Profile</button>
                     </form>
@@ -129,8 +125,8 @@
                             <i data-lucide="star" class="star filled"></i>
                             <i data-lucide="star" class="star half-filled"></i>
                         </div>
-                        <span class="rating-value">4.7</span>
-                        <span class="rating-count">(38 ratings)</span>
+                        <span class="rating-value">4.5</span>
+                        <span class="rating-count">(50 ratings)</span>
                     </div>
                 </div>
             </div>
