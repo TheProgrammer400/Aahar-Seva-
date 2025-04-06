@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NGO Profile - Aahar Seva</title>
     <link rel="stylesheet" href="../stylesheets/NGOprofile.css">
 </head>
+
 <body>
     <div class="container">
+        <div class="user-info">
+            <h2>User Info</h2>
+            <p>Name: <span id="userName"></span></p>
+            <p>Email: <span id="userEmail"></span></p>
+            <button id="logoutBtn">Logout</button>
+        </div>
         <h1>NGO Dashboard</h1>
         <div class="dashboard-grid">
             <div class="card dashboard-overview">
@@ -15,15 +23,15 @@
                 <dl>
                     <div>
                         <dt>Food Requests</dt>
-                        <dd>10</dd>
+                        <dd id="foodRequests">0</dd>
                     </div>
                     <div>
                         <dt>Accepted Donations</dt>
-                        <dd>8</dd>
+                        <dd id="acceptedDonations">0</dd>
                     </div>
                     <div>
                         <dt>Pending Deliveries</dt>
-                        <dd>3</dd>
+                        <dd id="pendingDeliveries">0</dd>
                     </div>
                 </dl>
             </div>
@@ -56,38 +64,19 @@
                 </form>
             </div>
 
-            <div class="card track-requests">
-                <h2>Track Requests</h2>
+            <div class="card available-donations">
+                <h2>Available Donations</h2>
                 <table>
                     <thead>
                         <tr>
                             <th>Date</th>
                             <th>Quantity</th>
-                            <th>Status</th>
+                            <th>Type</th>
+                            <th>Pickup Time</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>2024-02-01</td>
-                            <td>100</td>
-                            <td><span class="badge pending">Pending</span></td>
-                        </tr>
-                        <tr>
-                            <td>2024-02-02</td>
-                            <td>150</td>
-                            <td><span class="badge accepted">Accepted</span></td>
-                        </tr>
-                        <tr>
-                            <td>2024-02-03</td>
-                            <td>200</td>
-                            <td><span class="badge in-transit">In Transit</span></td>
-                        </tr>
-                        <tr>
-                            <td>2024-02-04</td>
-                            <td>120</td>
-                            <td><span class="badge delivered">Delivered</span></td>
-                        </tr>
-                    </tbody>
+                    <tbody></tbody>
                 </table>
             </div>
 
@@ -97,19 +86,19 @@
                     <form>
                         <div class="form-group">
                             <label for="name">NGO Name</label>
-                            <input type="text" id="name" placeholder="NGO Name" required>
+                            <input type="text" id="name" required>
                         </div>
                         <div class="form-group">
                             <label for="contact">Contact Details</label>
-                            <input type="email" id="contact" placeholder="yourEmail@gmail.com" required>
+                            <input type="email" id="contact" required>
                         </div>
                         <div class="form-group">
                             <label for="address">Address</label>
-                            <input type="text" id="address" placeholder="Enter Address" required>
+                            <input type="text" id="address" required>
                         </div>
                         <div class="form-group">
                             <label for="mission">Mission Statement</label>
-                            <textarea id="mission" required>Our mission is to help those in need.</textarea>
+                            <textarea id="mission" required></textarea>
                         </div>
                         <button type="submit">Update Profile</button>
                     </form>
@@ -132,9 +121,14 @@
             </div>
         </div>
     </div>
-    <script>
-        lucide.createIcons();
+    <script type="module" src="../firebase.mjs">
+        import { checkAuthState } from "../firebase.mjs";
+        window.onload = () => {
+            checkAuthState(auth);
+        };
     </script>
-</body>
-</html>
+    <script type="module" src="../ngo-db.js"></script>
 
+</body>
+
+</html>
