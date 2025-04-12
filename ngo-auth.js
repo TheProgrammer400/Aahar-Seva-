@@ -34,7 +34,6 @@ document.getElementById("signup").addEventListener("click", async (event) => {
         alert("NGO registered: " + user.email);
         window.location.href = "NGOProfile.html";
     } catch (error) {
-        console.error(error.message);
         alert("Error: " + error.message);
     }
 });
