@@ -170,7 +170,7 @@ profileForm?.addEventListener('submit', async (e) => {
 logoutBtn?.addEventListener('click', async () => {
     try {
         await auth.signOut();
-        window.location.href = 'NGOLogin.html';
+        window.location.href = 'NGOlogin.html';
     } catch (error) {
         console.error('Error logging out:', error);
         alert('Error logging out: ' + error.message);
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (user) {
             loadNGOData();
         } else {
-            window.location.href = 'NGOLogin.html';
+            window.location.href = 'NGOlogin.html';
         }
     });
 });
