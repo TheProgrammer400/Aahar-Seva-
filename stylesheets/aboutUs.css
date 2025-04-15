@@ -6,6 +6,7 @@ body {
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
+    font-size: 1.1em; /* Increased font size */
 }
 
 /* Header */
@@ -28,34 +29,6 @@ header h2 {
     font-style: italic;
 }
 
-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.1em;
-    position: relative;
-    transition: color 0.3s;
-}
-
-nav a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    background: white;
-    left: 0;
-    bottom: -5px;
-    transition: width 0.3s;
-}
-
-nav a:hover {
-    color: #ffeedd;
-}
-
-nav a:hover::after {
-    width: 100%;
-}
-
 nav ul {
     list-style: none;
     padding: 0;
@@ -63,18 +36,6 @@ nav ul {
     display: flex;
     justify-content: center;
     gap: 30px;
-}
-
-nav a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    background: white;
-    left: 0;
-    bottom: -5px;
-    transition: width 0.3s;
-    text-decoration: underline;
 }
 
 nav a {
@@ -109,13 +70,28 @@ nav a:hover {
     color: #555;
 }
 
+/* Image Section */
+.about-image {
+    text-align: center;
+    background: #fff3e0;
+    padding: 40px 20px;
+}
+
+.about-image img {
+    max-width: 90%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
 /* Story */
 .story {
     padding: 50px 30px;
     background: #fff8f0;
     max-width: 900px;
     margin: auto;
-    line-height: 1.7;
+    line-height: 1.8;
+    font-size: 1.15em;
 }
 
 .story h2 {
@@ -186,6 +162,7 @@ footer {
     background: #ffcc99;
     text-align: center;
     color: #333;
+    font-size: 1.1em;
 }
 
 /* Responsive */
@@ -198,5 +175,9 @@ footer {
     nav ul {
         flex-direction: column;
         gap: 15px;
+    }
+
+    .about-image img {
+        max-width: 95%;
     }
 }
