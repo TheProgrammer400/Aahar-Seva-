@@ -17,6 +17,7 @@ const missionInput = document.getElementById('mission');
 const userNameEl = document.getElementById('userName');
 const userEmailEl = document.getElementById('userEmail');
 const logoutBtn = document.getElementById('logoutBtn');
+const requestHistoryTable = document.querySelector('.request-history tbody')
 
 function loadNGOData() {
     const userId = auth.currentUser?.uid;
@@ -24,6 +25,8 @@ function loadNGOData() {
 
     const ngoRef = ref(db, `ngos/${userId}`);
     const donationsRef = ref(db, 'donations');
+    const reqRef = ref(db, 'requests')
+
 
     onValue(ngoRef, (snapshot) => {
         const data = snapshot.val() || {};
@@ -38,6 +41,17 @@ function loadNGOData() {
         userEmailEl.textContent = auth.currentUser.email || 'Unknown';
     });
 
+    onValue(reqRef, (snapshot) => {
+        const allReqests = snapshot.val() || {}
+        const ngoRequests = {}
+        Object.entries(allReqests).forEach(([id, request]) => {
+            if(request.requesterId === userId){
+                ngoRequests[id] = request
+            }
+        })
+        updateRequestHistory(ngoRequests)
+    })
+
     onValue(donationsRef, (snapshot) => {
         const allDonations = snapshot.val() || {};
         const availableDonations = {};
@@ -48,6 +62,21 @@ function loadNGOData() {
         });
         updateAvailableDonations(availableDonations, userId);
     });
+}
+
+function updateRequestHistory(requests){
+    requestHistoryTable.innerHTML = ''
+    Object.entries(requests).forEach(([id, request]) => {
+        const row = document.createElement('tr')
+        row.innerHTML = `
+            <td>${request.date}</td>
+            <td>${request.quantity}</td>
+            <td>${request.type}</td>
+            <td>${request.urgency}</td>
+            <td>${request.status}</td>
+        `;
+        requestHistoryTable.appendChild(row);
+    })
 }
 
 function updateAvailableDonations(donations, userId) {
@@ -116,19 +145,25 @@ requestForm?.addEventListener('submit', async (e) => {
     const foodType = document.getElementById('foodType').value;
     const urgency = document.getElementById('urgency').value;
     const date = new Date().toISOString().split('T')[0];
+    const requestId = Date.now().toString();
 
     const requestData = {
+        requesterId: userId,
         date,
         quantity,
         foodType: foodType === 'veg' ? 'Vegetarian' : 'Non-Vegetarian',
         urgency,
         status: 'Pending',
+        acceptedBy: null,
         createdAt: Date.now()
     };
 
     try {
         const ngoRef = ref(db, `ngos/${userId}`);
-        const requestId = Date.now().toString();
+        const reqRef = ref(db, `requests/${requestId}`);
+
+        await set(reqRef, requestData);
+        
 
         await runTransaction(ngoRef, (currentData) => {
             currentData = currentData || {};
@@ -170,7 +205,7 @@ profileForm?.addEventListener('submit', async (e) => {
 logoutBtn?.addEventListener('click', async () => {
     try {
         await auth.signOut();
-        window.location.href = 'NGOlogin.html';
+        window.location.href = 'NGOLogin.html';
     } catch (error) {
         console.error('Error logging out:', error);
         alert('Error logging out: ' + error.message);
@@ -182,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (user) {
             loadNGOData();
         } else {
-            window.location.href = 'NGOlogin.html';
+            window.location.href = 'NGOLogin.html';
         }
     });
 });
